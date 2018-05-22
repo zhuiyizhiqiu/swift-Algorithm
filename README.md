@@ -1,5 +1,5 @@
-### swift-Algorithm
+# swift-Algorithm
 
-# stack，用swift实现的
+## stack，用swift实现的
 
-# queue，用swift实现的
+## queue，用swift实现的
