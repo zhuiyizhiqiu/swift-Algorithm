@@ -54,3 +54,31 @@
        这样就很顺利的打印了1000000000以内的斐波那契数，而且速度很快
     
     
+ ###高效的FIFOQueue
+
+先设计一个Queue的协议
+    
+    protocol Queue{
+      associatedtype Element
+      mutating func enqueue(_ newElement: Element)
+      mutating func dequeue() -> Element?
+    }
+    
+    ///一个高效的FIFO队列，其元素类型为Element
+    struct FIFOQueue<Element>:Queue{
+      private var left: [Element] = []
+      private var right: [Element] = []
+      
+      mutating func enquene(_ newElement: Element){
+        right.append(newElement)
+      }
+      
+      mutating func dequenue() -> Element?{
+        if left.isEmpty{
+          left = right.reversed()
+          right.removeAll()
+        }
+        return left.popLast()
+      }
+      
+      
