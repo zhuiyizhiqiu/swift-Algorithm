@@ -35,3 +35,66 @@ struct FIFOQueue<Element>:Queue{
         return left.popLast()
     }
 }
+var array = FIFOQueue<Int>()
+array.enqueue(2)
+array.dequeue()
+array.dequeue()
+array.dequeue()
+
+///precondition的用法与assert类似，当条件不满足时，则终止程序，并打印出你设置的messag或者默认的错误信息
+extension FIFOQueue: Collection{
+    public var startIndex: Int{return 0}
+    public var endIndex: Int{return left.count + right .count}
+    
+    public func index(after i: Int) -> Int {
+        precondition(i < endIndex)
+        return i + 1
+    }
+    
+    public subscript(position: Int) -> Element{
+        precondition((0..<endIndex).contains(position),"Index out of bounds")
+        if position < left.endIndex{
+            return left[left.count - position - 1]
+        }else{
+            return right[position - left.count]
+        }
+    }
+    
+    typealias Indices = CountableRange<Int>
+    var indices: CountableRange<Int>{
+        return startIndex..<endIndex
+    }
+}
+
+var q = FIFOQueue<String>()
+for x in ["1","2","foo","3"]{
+    q.enqueue(x)
+}
+
+for s in q {
+    print(s,terminator:" ")
+}
+var a = Array(q)
+a.append(contentsOf: a[2...3])
+a
+
+q.map{$0.uppercased()}
+q.flatMap{Int($0)}
+q.filter{$0.count > 1}
+q.sorted()
+q.joined(separator: " ")
+
+q.isEmpty
+q.count
+q.first
+
+extension FIFOQueue: ExpressibleByArrayLiteral{
+    public init(arrayLiteral elements: Element...) {
+        left = elements.reversed()
+        right = []
+    }
+}
+
+let queue: FIFOQueue = [1,2,3,4]
+
+
