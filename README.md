@@ -2,8 +2,7 @@
 
 ## stack，用swift实现的
 
-## queue，用swift实现的
-
+## queue，用swift实现
 ### 高效的FIFOQueue
 
 先设计一个Queue的协议
