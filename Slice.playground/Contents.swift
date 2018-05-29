@@ -64,4 +64,40 @@ Array(Words("hello world teat")).prefix(2)
 
 let words: Words = Words("one two three")
 let onePastStart = words.index(after:words.startIndex)
+let firstDropped = words[onePastStart..<words.endIndex]
+Array(firstDropped)
+
+let firstDrooped2 = words.suffix(from: onePastStart)
+
+let firstDrooped3 = words[onePastStart...]
+
+extension Words{
+    subscript(range:Range<WordsIndex>) -> Words{
+        let start = range.lowerBound.range.lowerBound
+        let end = range.upperBound.range.upperBound
+        return Words(string[start..<end])
+    }
+}
+
+struct PrefixIterator<Base:Collection>: IteratorProtocol,Sequence{
+    let base: Base
+    var offset: Base.Index
+    
+    init(_ base: Base) {
+        self.base = base
+        self.offset = base.startIndex
+    }
+    
+    mutating func next() -> Base.SubSequence? {
+        guard offset != base.endIndex else {
+            return nil
+        }
+        base.formIndex(after: &offset)
+        return base.prefix(upTo: offset)
+    }
+}
+
+let numbers = [1,2,3]
+Array(PrefixIterator(numbers))
+
 
