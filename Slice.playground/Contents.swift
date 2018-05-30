@@ -100,5 +100,5 @@ struct PrefixIterator<Base:Collection>: IteratorProtocol,Sequence{
 let numbers = [1,2,3]
 Array(PrefixIterator(numbers))
 
-
+///cheshi
 
