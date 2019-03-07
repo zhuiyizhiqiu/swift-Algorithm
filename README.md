@@ -1,5 +1,7 @@
 # swift-Algorithm
 
+## swift5 即将发布，算法后期会以swift5 进行更新
+
 ## stack，用swift实现的
 
 ## queue，用swift实现
