@@ -1,5 +1,7 @@
 # swift-Algorithm
 
+## swift5 即将发布，算法后期会以swift5 进行更新
+
 ## stack，用swift实现的
 
 ## queue，用swift实现
@@ -120,5 +122,57 @@
        这样就很顺利的打印了1000000000以内的斐波那契数，而且速度很快
     
     
+ ## swift4.2实现List
+    class ListNode{
+        var val: Int
+        var next: ListNode?
+    
+        init(_ val: Int) {
+            self.val = val
+            self.next = nil
+        }
+    }
+
+    class List{
+        var head: ListNode?
+        var real: ListNode?
+    
+        //尾插法
+        func appendToReal(_ val: Int){
+             if real == nil {
+                 real = ListNode(val)
+                 head = real
+             }else{
+                real!.next = ListNode(val)
+                real = real!.next
+            }
+        }
+    
+        //头插法
+        func appendToHead(_ val: Int){
+             if head == nil{
+                head = ListNode(val)
+                real = head
+            }else{
+                let temp = ListNode(val)
+                temp.next = head
+                head = temp
+            }
+        }
+    
+        func printList(){
+            var temp = head
+            while temp != nil {
+                print(temp!.val)
+                temp = temp!.next
+            }
+        }
+        }
+
+    let textList = List()
+       [1,2,3,4,5].map{
+       textList.appendToHead($0)
+       }
+    textList.printList()
 
       
