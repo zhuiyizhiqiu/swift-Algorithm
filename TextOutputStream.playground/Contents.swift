@@ -815,3 +815,127 @@ steam.buffer
 //    }
 //}
 
+func simplePath(path: String) -> String{
+    var pathStack = [String]()
+    
+    let paths = path.components(separatedBy: "/")
+    
+    for path in paths{
+        guard path != "." else {
+            continue
+        }
+        
+        if path == ".." {
+            if pathStack.count > 0 {
+                pathStack.removeLast()
+            }
+        }else if path != ""{
+            pathStack.append(path)
+        }
+    }
+    
+    let res = pathStack.reduce(""){total,dir in "\(total)/\(dir)"}
+    
+    return res.isEmpty ? "/" : res
+}
+
+let path = "/a/./b/../../c/"
+simplePath(path: path)
+
+
+public class TreeNode {
+    public var val: Int
+    public var left: TreeNode?
+    public var right: TreeNode?
+    public init(_ val: Int) {
+        self.val = val
+    }
+}
+
+
+
+struct createTree {
+     var tree: TreeNode?
+    
+    mutating func insertTree(_ newElement: Int){
+        if tree == nil {
+            tree = TreeNode(newElement)
+        }else{
+            //找待插节点
+            var p: TreeNode? = tree
+            var q: TreeNode? = tree
+            while p != nil {
+                if p!.val < newElement{
+                    q = p
+                    p = p!.right
+                }else{
+                    q = p
+                    p = p!.left
+                }
+            }
+            
+            if q!.val > newElement {
+                let temp = TreeNode(newElement)
+                q!.left = temp
+            }else{
+                let temp = TreeNode(newElement)
+                q!.right = temp
+            }
+        }
+    }
+    func preTraversal(){
+        preTraversal(root: tree)
+    }
+    
+    func inOrder(){
+        inorderTranversal(root: tree)
+    }
+    
+    func postOder(){
+        postOrderTranversal(root: tree)
+    }
+    private func preTraversal(root: TreeNode?){
+        if let root = root {
+            print(root.val)
+            preTraversal(root: root.left)
+            preTraversal(root: root.right)
+        }
+    }
+    
+    private func inorderTranversal(root: TreeNode?){
+        if let root = root {
+            inorderTranversal(root: root.left)
+            print(root.val)
+            inorderTranversal(root: root.right)
+        }
+    }
+    
+    private func postOrderTranversal(root: TreeNode?) {
+        if let root = root {
+            postOrderTranversal(root: root.left)
+            postOrderTranversal(root: root.right)
+            print(root.val)
+        
+        }
+    }
+    
+    func maxDepth() -> Int{
+        return maxDepth(root: tree)
+    }
+    private func maxDepth(root: TreeNode?) -> Int {
+        guard let root = root else {
+            return 0
+        }
+        return max(maxDepth(root: root.left),maxDepth(root: root.right)) + 1
+    }
+}
+
+var text = createTree()
+[2,4,1,5,27,9].map{ text.insertTree($0)}
+print("先序遍历")
+text.preTraversal()
+print("中序遍历")
+text.inOrder()
+print("后序遍历")
+text.postOder()
+text.maxDepth()
