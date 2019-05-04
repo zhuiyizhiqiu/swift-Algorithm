@@ -928,6 +928,40 @@ struct createTree {
         }
         return max(maxDepth(root: root.left),maxDepth(root: root.right)) + 1
     }
+    
+    private func levelOrder(root: TreeNode?) -> [[Int]]{
+        var res = [[Int]]()
+        var queue = [TreeNode]()
+        
+        if let root = root {
+            queue.append(root)
+        }
+        
+        while queue.count > 0 {
+            let size = queue.count
+            var level = [Int]()
+            
+            for _ in 0..<size{
+                let node = queue.removeFirst()
+                
+                level.append(node.val)
+                if let left = node.left {
+                    queue.append(left)
+                }
+                
+                if let right = node.right{
+                    queue.append(right)
+                }
+            }
+            res.append(level)
+        }
+        
+        return res
+    }
+    
+    func levelOrder() -> [[Int]]{
+        return levelOrder(root: tree)
+    }
 }
 
 var text = createTree()
@@ -939,3 +973,4 @@ text.inOrder()
 print("后序遍历")
 text.postOder()
 text.maxDepth()
+print(text.levelOrder())
