@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <playground version='6.0' target-platform='ios'>
     <pages>
-        <page name='Untitled Page 2'/>
+        <page name='leetCode-912-排序数组'/>
         <page name='leetCode-9-回文数'/>
+        <page name='leetCode-27-移除元素'/>
     </pages>
 </playground>
