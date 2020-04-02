@@ -18,34 +18,40 @@
 //}
 //sortArray([5,2,3,1])
 //
-//func sortArrayTwo(_ nums: [Int]) -> [Int]{
-//    var arr = nums
-//    let length = arr.count
-//    var count = arr.count
-//    repeat {
-//        count = count / 3 + 1
-//        for i in 0..<count {
-//            for j in stride(from: i + count, to: length, by: count) {
-//                if arr[j] < arr[j - count]{
-//                    let temp = arr[j]
-//                    for k in stride(from: j - count, to: 0, by: -count) {
-//                        if temp > arr[k]{
-//                            arr[k + count] = temp
-//                            break
-//                        }
-//                        arr[k + count] = arr[k]
-//                    }
-//                }
-//            }
-//        }
-//    }while(count > 1)
+func sortArrayTwo(_ nums: [Int]) -> [Int]{
+    var arr = nums
+    let length = arr.count
+    var count = arr.count
+    repeat {
+        count = count / 3 + 1
+        for i in 0..<count {
+            for j in stride(from: i + count, to: length, by: count) {
+                if arr[j] < arr[j - count]{
+                    let temp = arr[j]
+//                    var cTemp = 0
+                    for k in stride(from: j - count, to: -1, by: -count) {
+                        print(arr[k])
+                        if temp > arr[k]{
+                            arr[j] = arr[k]
+                            break
+                        }
+                        arr[k + count] = arr[k]
+                            
+                    }
+                    
+                }
+            }
+        }
+    }while(count > 1)
+
+    return arr
+
+}
 //
-//    return arr
-//
-//}
-//
-////sortArrayTwo([2,1])
-//for i in stride(from: 10, to: 1, by: -1){
-//    print(i)
-//}
+sortArrayTwo([2,3,4,6,2,9,10,2])
+for i in stride(from: 0, to: -1, by: -1){
+    print(i)
+}
+
+
 
