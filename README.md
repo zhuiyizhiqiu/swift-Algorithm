@@ -1,6 +1,5 @@
 # swift-Algorithm
 
-## swift5 即将发布，算法后期会以swift5 进行更新 
 
 ## 新增leetcode题解--swift版本哦   [leetcode题解](https://github.com/zhuiyizhiqiu/swift-Algorithm/tree/master/leetCode题解)
 
