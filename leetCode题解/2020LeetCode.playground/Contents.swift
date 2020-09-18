@@ -98,4 +98,63 @@ func reverseKGroup(_ head: ListNode?,_ k: Int) -> ListNode?{
     return reHead
 }
 
+func compressString(_ S: String) -> String {
+    guard S.count > 0 else{
+        return S
+    }
+    var arr = ""
+    var count = 1
+    for (i,j) in zip(S, S.dropFirst()){
+        if i == j{
+            count += 1
+        }else{
+            arr += String(i) + String(describing: count)
+            count = 1
+        }
+    }
+    arr += String(S.last!) + String(describing: count)
+    return arr.count >= S.count ? S : arr
+}
+
+//func addBinary(_ a: String,_ b: String) -> String{
+//    var attStr = ""
+//    var count = 0
+//    for (i,j) in zip(a.reversed(), b.reversed()){
+//        switch (i,j) {
+//        case ("0","0"):
+//            if count == 1{
+//                attStr.append("1")
+//                count = 0
+//            }else{
+//                attStr.append("0")
+//            }
+//        case ("1","0"):
+//            if count == 1{
+//                attStr.append("0")
+//                count = 1
+//            }else{
+//                attStr.append("1")
+//            }
+//        case ("0","1"):
+//            if count == 1{
+//                attStr.append("0")
+//                count = 1
+//            }else{
+//                attStr.append("1")
+//            }
+//        case ("1","1"):
+//            if count == 1{
+//                attStr.append("1")
+//                count = 1
+//            }else{
+//                attStr.append("0")
+//                count = 1
+//            }
+//        default:
+//            break
+//        }
+//    }
+//    return attStr
+//}
+//let a = addBinary("11", "1")
 
