@@ -157,4 +157,31 @@ func compressString(_ S: String) -> String {
 //    return attStr
 //}
 //let a = addBinary("11", "1")
+var text = [1,5,2,3,1,4]
+let index = text.lastIndex(of: 1)! as Int
+index
+var a = text[index...]
+a.append(2)
+ let b = Array<Int>(a)
 
+
+
+func maximumUniqueSubarray(_ nums: [Int]) -> Int {
+    var current = [Int]()
+    var sum = 0
+    for i in nums{
+        if !current.contains(i){
+            current.append(i)
+        }else{
+            let index = current.lastIndex(of: i)! as Int
+            current = Array<Int>(current[(index + 1)...])
+            current.append(i)
+        }
+        let tempSum = current.reduce(0, +)
+        sum = sum > tempSum ? sum : tempSum
+    }
+    
+    return sum
+}
+
+print(maximumUniqueSubarray([4,2,4,5,6]))
